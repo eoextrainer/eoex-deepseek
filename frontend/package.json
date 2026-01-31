@@ -1,0 +1,46 @@
+{
+  "name": "eoex-frontend",
+  "version": "1.0.0",
+  "description": "EOEX Platform - Multi-tiered subscription community platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write src"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.20.0",
+    "axios": "^1.6.5",
+    "zustand": "^4.4.7",
+    "three": "^r160",
+    "react-three-fiber": "^8.15.0",
+    "drei": "^9.96.0",
+    "zustand": "^4.4.7",
+    "@heroicons/react": "^2.0.18",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.30.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.8",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.55.0",
+    "eslint-config-react-app": "^7.0.1",
+    "prettier": "^3.1.1",
+    "vitest": "^1.1.1",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/jest-dom": "^6.1.5",
+    "typescript": "^5.3.3",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18"
+  }
+}
