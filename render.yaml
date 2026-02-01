@@ -1,0 +1,12 @@
+root = "frontend"
+
+[build]
+  command = "npm run build"
+  
+[env]
+  VITE_API_BASE_URL = "https://kcd-api.onrender.com/api/v1"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

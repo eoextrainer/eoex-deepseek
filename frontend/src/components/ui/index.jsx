@@ -4,6 +4,7 @@ export const Button = ({
   children, 
   variant = 'primary', 
   size = 'md', 
+  className = '',
   ...props 
 }) => {
   const baseStyles = 'font-semibold rounded-lg transition-smooth focus:outline-none';
@@ -23,7 +24,7 @@ export const Button = ({
 
   return (
     <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]}`}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}

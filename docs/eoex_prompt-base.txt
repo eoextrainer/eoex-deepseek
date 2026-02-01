@@ -1,0 +1,93 @@
+persona: you are a senio software developer with more than 10 years of experience in SPA web and mobile apps using html, css, javascript, 3D webGL, 3D OpenGL, python, postgresql and their related frameworks and depencendies.
+
+
+context: you must draft, analyse, archtect, develop, test, package, deploy, document, deliver and autonomously self-repair and self-heal an online SPA app
+
+
+criteria:
+this app will be called EOEX
+this is a multi-user system with invididual login credentials for each type of user
+the user tiers are:
+    - system admin:
+        controlls everything in the platform and grants privileges to other users
+        manages the plaftorm performance through a platform dashboard
+        manages every user interaction through a user manager
+        manages each service subscribed to by the users
+        authorises and facilitate data and service exchanges between the platform and external data sources and services though microservcies APIs
+        captures, collects, analyses, transcribes into ai ready prompt every user's feature request submitted by the community admin
+
+    - community admin:
+        oversees each user's interacions with a community dashboard
+        manages each user's subscription
+        drafts, plans, executes and monitor marketing and digital marketing campaigns aiming to propose and promote programs, services or features for the platform's user community
+        carries out the vetting of each user's feature/service request
+
+    - community moderator
+        oversees the platform user's engagement and happiness level as well as their overal user journey and customer experience through a community higlights dashboard
+        captures, collects, polls and tracks all upcoming service opportunities for the platform users with dynamic fitlers per tier and categories
+        captures, collects, polls and tracks all pending user issues reported at the user level
+        moderates the platform's Q&A forum with questions filtered by the categories:
+            platform UI/UX feedback
+            community complaints
+            user feature/service requests
+        subtle and seemless tool to impersonate eany user (excluding the system administrator) in order to review their user experience and report any issues
+
+
+    - community user
+        consumes the latest higlights based on the plaftorm's core business premise and the specific subscription topics
+        has a separate section containing the top 5 favourite subscription and/or modules
+        engages with the platform through modules based on a paying subscription model
+        has a separate section that helps the user manage each of their service subscription
+        has a user chatbox to interact with other users in the platform
+        has an ai prompt where each user can request new features or current feature improvement. These are then routed to the community moderator for vetting before being implemented and test using an in-built AI prompt system native to the platform
+
+
+    - community guest
+        This user has the most limited access to the platform but can view certain features and modules on a time-limited basis. This account can only be requested by the community admin and enabled y the system admin
+
+
+base plaform features:
+    core features:
+        hero video caroussel visible in the top part of every user's workspace
+        subscription manager: to manage each user's feature subscribed
+        Q&A community forum
+        language settings: include and seed the complete text translation for each platform label in every european languge
+        settings: change colour theme (create by default 5 different pleasant and inviting colour themes)
+
+details:
+    this platform will have a similar architectural structure to the Salesforce platform with
+        - a core system
+        - admin layer
+        - community admin / community moderator layer
+        - user layer
+        - guest layer
+        - subscription based modules and features
+        - configuration layer: for changes in system language, colour palette, colour theme
+
+
+the plaftorm home screen will have a similar ui design as the netflix (https://www.netflix.com/fr-en/title/70213223?trackId=155573560&fromWatch=true) website
+the ui-ux workspace for the end user will have a similar design, layout, colour palette and fonts as the Disney+ (https://www.disneyplus.com/en-gb/home)
+the ui-ux workspace for the community admin and moderator will have the same design, layout, colour palette and fonts as the salesforce ( https://curious-goat-24lain-dev-ed.trailblaze.lightning.force.com/lightning/page/home )
+the ui-ux workspace for the system admin will have the same desifn, layout, colour paletee and fonts as the salesforcec ( https://curious-goat-24lain-dev-ed.trailblaze.my.salesforce-setup.com/lightning/setup/SetupOneHome/home )
+
+
+for each class and method in the entire code base for this app you must
+    - use only the most efficient, robust and resilience architectural design patterns
+    - you must use only robust and reilient frameworks and dependencies
+    - you must create a python virtual environment
+    - you must setup git for this project and track every change using stage, commit with relevant comments, push to remote branch [remote repo: https://github.com/eoextrainer/eoex.git]
+the plaftorm must have its own platform database in postgresql for each user, each subscription, each module, each feature, each
+you must use the relevant KEYS from this user's environment variables
+
+
+
+======================================================================================
+
+You must first build a comprehensive and complete ai prompt based on the above information.
+
+you must seemlessly test the entire plaform from the database, its seeding, the correct loging of each user based on the same password [password123]
+
+======================================================================================
+
+
+you must build this app

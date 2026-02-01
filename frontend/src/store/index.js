@@ -22,7 +22,7 @@ export const useThemeStore = create(
   devtools((set) => ({
     currentTheme: localStorage.getItem('theme') || 'netflix',
     isDarkMode: localStorage.getItem('isDarkMode') !== 'false',
-    currentLanguage: localStorage.getItem('language') || 'en',
+    currentLanguage: localStorage.getItem('language') || 'fr',
     setTheme: (theme) => {
       localStorage.setItem('theme', theme);
       set({ currentTheme: theme });

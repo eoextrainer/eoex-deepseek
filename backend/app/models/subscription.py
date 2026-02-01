@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, func
 from sqlalchemy.orm import relationship
-from app.db.session import Base
+from ..db.session import Base
 
 
 class SubscriptionPlan(Base):

@@ -1,0 +1,399 @@
+EOEX Platform AI Prompt for Development
+Project Overview
+EOEX Platform - A multi-tiered subscription-based community platform with Netflix-style UI for users, Salesforce-style admin interfaces, and Disney+ inspired workspace design.
+
+Technical Stack Requirements
+Frontend: React/Vue.js SPA with WebGL/Three.js for 3D elements
+
+Backend: Python (FastAPI/Django) with PostgreSQL
+
+Authentication: JWT/OAuth2 with role-based access control
+
+Real-time: WebSockets for chat and notifications
+
+Deployment: Docker containers with CI/CD pipeline
+
+Testing: Pytest (backend), Jest/Cypress (frontend)
+
+Monitoring: ELK stack or Grafana/Prometheus
+
+User Tier Specifications
+System Admin
+Dashboard: System performance metrics, API gateway monitoring
+
+User Management: CRUD operations across all tiers
+
+Microservices Management: External API integration authorization
+
+AI Prompt Collection: Feature request aggregation and transcription
+
+Guest Account Approval: Enable/disable guest access
+
+Community Admin
+Community Dashboard: User interaction analytics
+
+Subscription Management: Tier-based service provisioning
+
+Marketing Campaigns: Campaign creation and performance tracking
+
+Feature Request Vetting: Preliminary review of user suggestions
+
+Community Moderator
+Highlights Dashboard: User engagement and satisfaction metrics
+
+Opportunity Tracking: Service opportunity polling with dynamic filters
+
+Issue Management: User-reported problem tracking
+
+Forum Moderation: Q&A management across categories:
+
+UI/UX Feedback
+
+Community Complaints
+
+Feature/Service Requests
+
+User Impersonation: Seamless UX review capability (excludes system admin)
+
+Community User
+Personalized Highlights: Subscription-topic based content
+
+Favorites Section: Top 5 favorite modules/subscriptions
+
+Subscription Modules: Pay-per-feature access
+
+Service Management: Subscription control panel
+
+User Chatbox: Real-time peer communication
+
+AI Feature Request: Prompt-based suggestions routed to moderators
+
+Community Guest
+Limited Access: Time-restricted feature preview
+
+Admin-Requested: Requires community admin request and system admin approval
+
+Core Platform Features
+1. Hero Video Carousel
+Position: Top of every workspace
+
+Content: Platform highlights, announcements, featured modules
+
+Auto-play with pause on hover
+
+Responsive design across devices
+
+2. Subscription Manager
+User-level subscription overview
+
+Upgrade/downgrade functionality
+
+Billing integration
+
+Usage analytics per subscription
+
+3. Q&A Community Forum
+Category-based organization
+
+Voting system (like/dislike)
+
+Best answer marking
+
+Search functionality
+
+Notification system
+
+4. Multi-language Support
+Complete European language coverage
+
+Database-seeded translations
+
+Real-time language switching
+
+RTL language support where applicable
+
+5. Theme System
+5 pre-defined pleasant color themes
+
+Custom theme creation capability
+
+Dark/light mode variants
+
+User preference persistence
+
+Architectural Structure
+Core System Layer
+Base authentication/authorization
+
+Payment gateway integration
+
+Notification engine
+
+Analytics collection
+
+Admin Layer
+System health monitoring
+
+User lifecycle management
+
+API key management
+
+Audit logging
+
+Community Management Layer
+User engagement tracking
+
+Content moderation tools
+
+Campaign management
+
+Reporting dashboard
+
+User Layer
+Personalized content delivery
+
+Subscription management
+
+Social features
+
+Preference management
+
+Guest Layer
+Limited feature access
+
+Time-based restrictions
+
+Conversion funnel optimization
+
+Module/Feature Layer
+Plugin architecture
+
+Subscription-gated access
+
+Version management
+
+Dependency handling
+
+Configuration Layer
+Theme management
+
+Language configuration
+
+Feature flags
+
+A/B testing framework
+
+UI/UX Specifications
+Home Screen (Netflix-style)
+Hero video carousel
+
+Personalized content rows
+
+Continue watching section
+
+Trending modules
+
+Search bar with predictive text
+
+User Workspace (Disney+-style)
+Clean, minimal interface
+
+Card-based content presentation
+
+Easy navigation sidebar
+
+Quick access toolbar
+
+Responsive grid layout
+
+Admin/Moderator Workspace (Salesforce-style)
+Tab-based navigation
+
+Data tables with filtering
+
+Kanban boards for task management
+
+Real-time metrics dashboard
+
+Bulk action capabilities
+
+System Admin Workspace (Salesforce Setup-style)
+Hierarchical menu system
+
+Configuration panels
+
+System diagnostics
+
+API management console
+
+User impersonation logs
+
+Database Schema Requirements
+PostgreSQL Databases:
+User Database: Profiles, authentication, preferences
+
+Subscription Database: Plans, billing, usage tracking
+
+Content Database: Modules, features, media assets
+
+Community Database: Forums, chats, user interactions
+
+Analytics Database: User behavior, system performance
+
+Configuration Database: Themes, languages, system settings
+
+Development Standards
+Code Architecture
+Domain-Driven Design (DDD) principles
+
+Microservices architecture with API gateway
+
+Event-driven architecture for real-time features
+
+Repository pattern for data access
+
+Factory pattern for user tier creation
+
+Strategy pattern for subscription management
+
+Observer pattern for notification system
+
+Decorator pattern for feature gating
+
+Security Requirements
+End-to-end encryption for sensitive data
+
+Regular security audits and penetration testing
+
+OWASP Top 10 compliance
+
+GDPR compliance for European users
+
+Rate limiting and DDoS protection
+
+Performance Requirements
+< 2 second page load time
+
+99.9% uptime SLA
+
+Real-time updates < 100ms latency
+
+Support for 10,000+ concurrent users
+
+Efficient caching strategy (Redis/Memcached)
+
+Testing Strategy
+Unit tests: 90%+ coverage
+
+Integration tests for API endpoints
+
+E2E tests for critical user journeys
+
+Load testing for performance validation
+
+Security vulnerability scanning
+
+Environment Variables Required
+bash
+# Database
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=eoex_main
+POSTGRES_USER=eoex_user
+POSTGRES_PASSWORD= # REQUIRED
+
+# Security
+JWT_SECRET_KEY= # REQUIRED
+ENCRYPTION_KEY= # REQUIRED
+API_GATEWAY_KEY= # REQUIRED
+
+# External Services
+STRIPE_API_KEY= # For payments
+SENDGRID_API_KEY= # For email
+AWS_ACCESS_KEY= # For storage
+AWS_SECRET_KEY= # REQUIRED
+
+# Monitoring
+ELASTICSEARCH_URL=elk.eoex.com
+GRAFANA_URL=monitoring.eoex.com
+
+# Feature Flags
+ENABLE_GUEST_ACCESS=true
+ENABLE_AI_FEATURES=true
+ENABLE_3D_ELEMENTS=true
+Initial Implementation Steps
+Phase 1: Foundation (Week 1-2)
+Set up Python virtual environment
+
+Initialize Git repository with branching strategy
+
+Create basic Django/FastAPI project structure
+
+Set up PostgreSQL with initial schemas
+
+Implement base authentication system
+
+Phase 2: Core Features (Week 3-4)
+User tier implementation with role-based permissions
+
+Subscription management system
+
+Basic UI templates for each user tier
+
+Theme and language framework
+
+Phase 3: Community Features (Week 5-6)
+Q&A forum implementation
+
+Real-time chat system
+
+Content moderation tools
+
+User dashboard development
+
+Phase 4: Advanced Features (Week 7-8)
+AI prompt system for feature requests
+
+3D WebGL elements integration
+
+Advanced analytics dashboard
+
+Marketing campaign tools
+
+Phase 5: Polish & Deployment (Week 9-10)
+Performance optimization
+
+Security hardening
+
+Comprehensive testing
+
+CI/CD pipeline setup
+
+Production deployment
+
+Success Metrics
+User adoption rate > 70% in first month
+
+Average session duration > 15 minutes
+
+Feature request submission rate > 5% of active users
+
+System uptime > 99.9%
+
+Page load time < 2 seconds (95th percentile)
+
+Risk Mitigation
+Scalability: Implement horizontal scaling from day one
+
+Security: Regular audits and automated vulnerability scanning
+
+Performance: Continuous monitoring and optimization
+
+User Experience: Regular A/B testing and user feedback loops
+
+Data Integrity: Regular backups and disaster recovery plan
+
+This comprehensive prompt provides all necessary information for autonomous development of the EOEX platform. The system will be built with resilience, scalability, and maintainability as core principles, following industry best practices and architectural patterns.
+
+
+update the remote project github repo to: https://github.com/eoextrainer/eoex-deepseek.git

@@ -6,24 +6,24 @@ export const AdminDashboard = () => {
   const { user } = useAuthStore();
 
   const stats = [
-    { label: 'Total Users', value: '2,543', change: '+12%' },
-    { label: 'Active Subscriptions', value: '1,892', change: '+8%' },
-    { label: 'Revenue', value: '$48,290', change: '+23%' },
-    { label: 'Engagement', value: '78%', change: '+5%' },
+    { label: 'Talents inscrits', value: '2,543', change: '+12%' },
+    { label: 'Profils Premium', value: '1,892', change: '+8%' },
+    { label: 'Collabs actives', value: '238', change: '+6%' },
+    { label: 'Satisfaction marques', value: '78%', change: '+5%' },
   ];
 
   const recentActivity = [
-    { id: 1, user: 'John Doe', action: 'Upgraded Plan', time: '2 hours ago' },
-    { id: 2, user: 'Jane Smith', action: 'Submitted Feature Request', time: '3 hours ago' },
-    { id: 3, user: 'Mike Johnson', action: 'Joined Community', time: '5 hours ago' },
+    { id: 1, user: 'Studio Polaris', action: 'Annonce de collaboration publiée', time: 'il y a 2 heures' },
+    { id: 2, user: 'Lina M.', action: 'Passage en Premium', time: 'il y a 3 heures' },
+    { id: 3, user: 'Maison Atelier', action: 'Marque validée', time: 'il y a 5 heures' },
   ];
 
   return (
     <div className="min-h-screen bg-gray-950">
       {/* Salesforce-style Admin Header */}
       <div className="bg-gray-900 border-b border-gray-800 px-6 py-6">
-        <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
-        <p className="text-gray-400">Platform Management & Analytics</p>
+        <h1 className="text-3xl font-bold text-white mb-2">Tableau de bord admin</h1>
+        <p className="text-gray-400">Pilotage des talents, marques et collaborations</p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -54,39 +54,39 @@ export const AdminDashboard = () => {
         {/* Admin Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Card>
-            <h3 className="text-white font-semibold mb-4">User Management</h3>
+            <h3 className="text-white font-semibold mb-4">Gestion des talents</h3>
             <Button className="w-full mb-2" size="sm">
-              View All Users
+              Voir tous les talents
             </Button>
             <Button variant="secondary" className="w-full" size="sm">
-              Add Guest Account
+              Attribuer un badge Premium
             </Button>
           </Card>
 
           <Card>
-            <h3 className="text-white font-semibold mb-4">Configuration</h3>
+            <h3 className="text-white font-semibold mb-4">Validation des marques</h3>
             <Button className="w-full mb-2" size="sm">
-              Theme Settings
+              Vérifier une marque
             </Button>
             <Button variant="secondary" className="w-full" size="sm">
-              Language Settings
+              Gérer les accès pros
             </Button>
           </Card>
 
           <Card>
-            <h3 className="text-white font-semibold mb-4">Subscriptions</h3>
+            <h3 className="text-white font-semibold mb-4">Collaborations</h3>
             <Button className="w-full mb-2" size="sm">
-              Manage Plans
+              Gérer les annonces
             </Button>
             <Button variant="secondary" className="w-full" size="sm">
-              View Revenue
+              Suivre les candidatures
             </Button>
           </Card>
         </div>
 
         {/* Recent Activity */}
         <Card>
-          <h3 className="text-white font-semibold text-lg mb-6">Recent Activity</h3>
+          <h3 className="text-white font-semibold text-lg mb-6">Activité récente</h3>
           <div className="space-y-4">
             {recentActivity.map((activity) => (
               <div

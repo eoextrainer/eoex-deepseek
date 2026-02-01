@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { useThemeStore } from '../../store';
-import { Button } from './index';
+import { useThemeStore } from '../store';
+import { Button } from './ui/index';
 
 const THEMES = [
-  { id: 'netflix', name: 'Netflix Dark', bg: '#141414', accent: '#e50914' },
+  { id: 'netflix', name: 'Netflix sombre', bg: '#141414', accent: '#e50914' },
   { id: 'disney', name: 'Disney+', bg: '#040714', accent: '#0063e5' },
-  { id: 'dark', name: 'Dark Mode', bg: '#0f0f0f', accent: '#ff0000' },
-  { id: 'light', name: 'Light Mode', bg: '#f5f5f5', accent: '#0070d2' },
+  { id: 'dark', name: 'Mode sombre', bg: '#0f0f0f', accent: '#ff0000' },
+  { id: 'light', name: 'Mode clair', bg: '#f5f5f5', accent: '#0070d2' },
 ];
 
 const LANGUAGES = [
-  { code: 'en', name: 'English' },
-  { code: 'es', name: 'Español' },
+  { code: 'en', name: 'Anglais' },
+  { code: 'es', name: 'Espagnol' },
   { code: 'fr', name: 'Français' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'it', name: 'Italiano' },
-  { code: 'pt', name: 'Português' },
+  { code: 'de', name: 'Allemand' },
+  { code: 'it', name: 'Italien' },
+  { code: 'pt', name: 'Portugais' },
 ];
 
 export const ThemeSettings = () => {
@@ -26,11 +26,11 @@ export const ThemeSettings = () => {
     <div className="fixed bottom-4 right-4 z-40">
       {showSettings && (
         <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-4 shadow-xl w-80">
-          <h3 className="text-white text-lg font-bold mb-4">Settings</h3>
+          <h3 className="text-white text-lg font-bold mb-4">Paramètres</h3>
 
           {/* Theme Selection */}
           <div className="mb-6">
-            <h4 className="text-white text-sm font-semibold mb-3">Theme</h4>
+            <h4 className="text-white text-sm font-semibold mb-3">Thème</h4>
             <div className="grid grid-cols-2 gap-2">
               {THEMES.map((theme) => (
                 <button
@@ -51,7 +51,7 @@ export const ThemeSettings = () => {
           {/* Dark Mode Toggle */}
           <div className="mb-6">
             <div className="flex items-center justify-between">
-              <label className="text-white text-sm font-semibold">Dark Mode</label>
+              <label className="text-white text-sm font-semibold">Mode sombre</label>
               <button
                 onClick={toggleDarkMode}
                 className={`relative w-12 h-6 rounded-full transition-colors ${
@@ -69,7 +69,7 @@ export const ThemeSettings = () => {
 
           {/* Language Selection */}
           <div className="mb-6">
-            <h4 className="text-white text-sm font-semibold mb-3">Language</h4>
+            <h4 className="text-white text-sm font-semibold mb-3">Langue</h4>
             <select
               value={currentLanguage}
               onChange={(e) => setLanguage(e.target.value)}
@@ -88,7 +88,7 @@ export const ThemeSettings = () => {
             className="w-full"
             size="sm"
           >
-            Close
+            Fermer
           </Button>
         </div>
       )}

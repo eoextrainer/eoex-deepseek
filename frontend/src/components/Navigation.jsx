@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuthStore } from '../../store';
+import { useAuthStore, useThemeStore } from '../store';
 
 export const Navigation = () => {
   const { user, logout } = useAuthStore();
+  const { currentTheme } = useThemeStore();
+  const roleName = user?.role?.name || user?.role;
+  const isDarkTheme = ['netflix', 'disney', 'dark'].includes(currentTheme);
 
   return (
     <nav className="bg-gray-900/95 border-b border-gray-800 sticky top-0 z-30">
@@ -12,20 +15,20 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">E</span>
+              <span className="text-white font-bold text-lg">K</span>
             </div>
-            <span className="text-white font-bold text-xl hidden sm:inline">EOEX</span>
+            <span className="text-white font-bold text-xl hidden sm:inline">KCD</span>
           </Link>
 
           {/* Links */}
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/explore" className="text-gray-300 hover:text-white transition-smooth">
-              Explore
+              Opportunités
             </Link>
             <Link to="/community" className="text-gray-300 hover:text-white transition-smooth">
-              Community
+              Communauté pro
             </Link>
-            {user?.role === 'admin' && (
+            {['system_admin', 'community_admin', 'moderator'].includes(roleName) && (
               <Link to="/admin" className="text-gray-300 hover:text-white transition-smooth">
                 Admin
               </Link>
@@ -41,22 +44,22 @@ export const Navigation = () => {
                   onClick={logout}
                   className="text-gray-300 hover:text-white transition-smooth"
                 >
-                  Logout
+                  Se déconnecter
                 </button>
               </>
             ) : (
               <>
                 <Link
                   to="/login"
-                  className="text-gray-300 hover:text-white transition-smooth"
+                  className={`${isDarkTheme ? 'text-white' : 'text-gray-300'} hover:text-white transition-smooth`}
                 >
-                  Sign In
+                  Se connecter
                 </Link>
                 <Link
                   to="/register"
                   className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-smooth"
                 >
-                  Join
+                  Rejoindre
                 </Link>
               </>
             )}

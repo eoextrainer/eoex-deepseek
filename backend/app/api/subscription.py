@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.db.session import get_db
-from app.models.subscription import Subscription, SubscriptionPlan
-from app.schemas.subscription_schema import (
+from ..db.session import get_db
+from ..models.subscription import Subscription, SubscriptionPlan
+from ..schemas.subscription_schema import (
     Subscription as SubscriptionSchema,
     SubscriptionCreate,
     SubscriptionUpdate,

@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.db.session import get_db
-from app.models.community import Community, ForumQuestion, ForumAnswer
-from app.schemas.community_schema import (
+from ..db.session import get_db
+from ..models.community import Community, ForumQuestion, ForumAnswer
+from ..schemas.community_schema import (
     Community as CommunitySchema,
     CommunityCreate,
     ForumQuestion as ForumQuestionSchema,

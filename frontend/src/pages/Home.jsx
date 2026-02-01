@@ -1,128 +1,283 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Card, Skeleton } from '../components/ui';
-import { useThemeStore } from '../store';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store';
+
+// Import images from res folders
+const opportunityImages = [
+  '/res/modeling-casting-call-poster-template-29rsqe2585d962.webp',
+  '/res/modern-fashion-show-poster-template-1ytnbr00c0a30f.webp',
+  '/res/model-casting-call,-pageant-flyer,-fashion-design-template-2d1ef3f77ca56012c1e5685657edd92f_screen.jpg',
+  '/res/5d6d6f4405f6c984339785ee5c611988.jpg',
+  '/res/model-casting-call-event-flyer-template-m2wcp360148f5a.webp',
+  '/res/model-casting-call-flyer-template-design-f1cb8367765d869d66825b25da803dbe_screen.jpg',
+  '/res/model-fashion-poster-design-template-1d6dc0643be3e6c8da749b4c79fd5382_screen.jpg',
+  '/res/professional-modeling-event-extravaganza-poster-template-m61bes047ca319.webp',
+];
+
+const castingImages = [
+  '/res/select/images (2).jpeg',
+  '/res/select/images.jpeg',
+  '/res/select/images (1).jpeg',
+  '/res/select/images (3).jpeg',
+  '/res/select/casting-call-visual-social-media-ng.jpg',
+];
+
+const SubscriptionTier = ({ name, price, features, icon, isPremium, isFeatured }) => {
+  return (
+    <div
+      className={`rounded-lg p-8 transition-all duration-300 ${
+        isFeatured
+          ? 'bg-gradient-to-br from-red-600 to-red-700 ring-2 ring-red-400 scale-105 shadow-2xl'
+          : 'bg-gray-800 hover:bg-gray-700'
+      } text-white flex flex-col h-full`}
+    >
+      <div className="text-4xl mb-4">{icon}</div>
+      <h3 className="text-2xl font-bold mb-2">{name}</h3>
+      <div className={`text-4xl font-bold mb-6 ${isFeatured ? 'text-white' : 'text-red-500'}`}>
+        {price}
+        {price !== 'Gratuit' && <span className="text-lg">/mois</span>}
+      </div>
+      <ul className="space-y-4 mb-8 flex-grow">
+        {features.map((feature, idx) => (
+          <li key={idx} className="flex items-start gap-3">
+            <span className={`text-xl mt-1 ${isFeatured ? 'text-white' : 'text-red-500'}`}>✓</span>
+            <span className={isFeatured ? 'text-white' : 'text-gray-300'}>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <button
+        className={`w-full py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+          isFeatured
+            ? 'bg-white text-red-600 hover:bg-gray-100'
+            : 'bg-red-600 text-white hover:bg-red-700'
+        }`}
+      >
+        Souscrire
+      </button>
+      {isPremium && (
+        <span className={`mt-4 text-center text-sm font-semibold ${isFeatured ? 'text-white' : 'text-red-400'}`}>
+          ⭐ PLUS POPULAIRE
+        </span>
+      )}
+    </div>
+  );
+};
+
+const CTA = ({ children, onClick, isDark = true }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`px-8 py-3 rounded-lg font-bold transition-all duration-200 ${
+        isDark
+          ? 'bg-white text-red-600 hover:bg-gray-100'
+          : 'bg-red-600 text-white hover:bg-red-700'
+      }`}
+    >
+      {children}
+    </button>
+  );
+};
 
 export const Home = () => {
-  const [videos, setVideos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { currentTheme } = useThemeStore();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuthStore();
+  const [activeFilter, setActiveFilter] = useState('Tout');
 
-  useEffect(() => {
-    // Simulate loading featured content
-    setTimeout(() => {
-      setVideos([
-        { id: 1, title: 'Featured Module 1', image: 'https://via.placeholder.com/800x450', category: 'Featured' },
-        { id: 2, title: 'Trending Module 2', image: 'https://via.placeholder.com/800x450', category: 'Trending' },
-        { id: 3, title: 'Popular Module 3', image: 'https://via.placeholder.com/800x450', category: 'Popular' },
-      ]);
-      setIsLoading(false);
-    }, 500);
-  }, []);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-950">
-      {/* Hero Carousel */}
-      <div className="relative w-full h-96 md:h-screen bg-gradient-to-br from-red-900 via-gray-900 to-gray-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-transparent animate-pulse" />
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero Section with YouTube Video Background */}
+      <div className="relative w-full h-screen overflow-hidden">
+        {/* YouTube Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <iframe
+            className="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/m5FPAvHLEVM?autoplay=1&mute=1&loop=1&playlist=m5FPAvHLEVM&controls=0&showinfo=0&rel=0"
+            title="Paris Fashion Week 2026 Runway"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ pointerEvents: 'none' }}
+          ></iframe>
         </div>
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-            Welcome to EOEX
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
+          <h1 className="text-6xl md:text-7xl font-black text-white mb-6 drop-shadow-lg">
+            KCD Talent Agency
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl">
-            Discover, Learn, and Grow with our subscription-based community platform
+          <p className="text-2xl md:text-3xl text-gray-100 mb-12 max-w-3xl drop-shadow-lg">
+            Plateforme professionnelle de mise en relation entre talents du mannequinat et marques
           </p>
-          <div className="flex gap-4">
-            <Button size="lg" variant="primary">
-              Start Exploring
-            </Button>
-            <Button size="lg" variant="outline">
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Featured Content Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-white mb-4">Featured Content</h2>
-          <div className="flex space-x-2">
-            <span className="text-sm font-semibold px-4 py-2 bg-red-600 text-white rounded-full">
-              All
-            </span>
-            <span className="text-sm font-semibold px-4 py-2 bg-gray-800 text-gray-300 rounded-full hover:bg-gray-700 cursor-pointer">
-              New
-            </span>
-            <span className="text-sm font-semibold px-4 py-2 bg-gray-800 text-gray-300 rounded-full hover:bg-gray-700 cursor-pointer">
-              Popular
-            </span>
+          <div className="flex flex-col sm:flex-row gap-6">
+            <CTA
+              isDark={true}
+              onClick={() => {
+                if (isAuthenticated) {
+                  navigate('/workspace');
+                } else {
+                  scrollToSection('opportunities');
+                }
+              }}
+            >
+              Découvrir les opportunités
+            </CTA>
+            <CTA
+              isDark={true}
+              onClick={() => scrollToSection('subscriptions')}
+            >
+              Comprendre l'offre
+            </CTA>
           </div>
         </div>
 
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-64 rounded-lg" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {videos.map((video) => (
-              <Card key={video.id} className="card-hover overflow-hidden">
-                <img
-                  src={video.image}
-                  alt={video.title}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  {video.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-4">{video.category}</p>
-                <Button size="sm" className="w-full">
-                  Watch Now
-                </Button>
-              </Card>
-            ))}
-          </div>
-        )}
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+          <svg className="w-6 h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
       </div>
 
-      {/* Trending Modules */}
-      <div className="bg-gradient-to-b from-gray-900 to-gray-950 py-16">
+      {/* Subscription Pricing Section */}
+      <div id="subscriptions" className="py-20 bg-gradient-to-b from-black via-gray-950 to-black">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-white mb-8">Trending Now</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="aspect-video bg-gray-800 rounded-lg hover:ring-2 hover:ring-red-600 transition-smooth cursor-pointer flex items-center justify-center"
-              >
-                <span className="text-gray-500">{i + 1}</span>
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-black text-white mb-4">Nos Offres d'Abonnement</h2>
+            <p className="text-xl text-gray-300">Choisissez le plan qui correspond à vos besoins</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <SubscriptionTier
+              name="Gratuit"
+              price="0€"
+              icon="🎭"
+              features={[
+                'Accès limité aux opportunités',
+                'Voir 5 annonces par mois',
+                'Profil basique',
+                'Pas de support prioritaire',
+              ]}
+            />
+            <SubscriptionTier
+              name="Premium"
+              price="29"
+              icon="⭐"
+              features={[
+                'Accès illimité aux opportunités',
+                'Notifications en temps réel',
+                'Profil premium avec portfolio',
+                'Support par email 24/7',
+                'Candidatures directes aux marques',
+              ]}
+              isPremium
+              isFeatured
+            />
+            <SubscriptionTier
+              name="Pro"
+              price="79"
+              icon="👑"
+              features={[
+                'Tous les avantages Premium',
+                'Coaching personnalisé',
+                'Accès aux événements exclusifs',
+                'Photo shoot professionnel',
+                'Support téléphonique VIP',
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Opportunities Section */}
+      <div id="opportunities" className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="mb-12">
+            <h2 className="text-4xl font-black text-white mb-6">Opportunités à la une</h2>
+            <div className="flex flex-wrap gap-3">
+              {['Tout', 'Nouveau', 'Populaire', 'Tendances'].map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-6 py-2 rounded-full font-bold transition-all duration-200 ${
+                    activeFilter === filter
+                      ? 'bg-red-600 text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {opportunityImages.map((image, idx) => (
+              <div key={idx} className="group relative rounded-lg overflow-hidden hover:ring-2 hover:ring-red-600 transition-all duration-300 cursor-pointer h-64">
+                <img
+                  src={image}
+                  alt={`Opportunité ${idx + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div>
+                    <h3 className="text-white font-bold text-lg">Opportunité {idx + 1}</h3>
+                    <button className="mt-2 px-4 py-2 bg-red-600 text-white rounded font-bold hover:bg-red-700">
+                      Voir l'annonce
+                    </button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <Card className="bg-gradient-to-r from-red-600 to-red-900 border-0">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div>
-              <h3 className="text-3xl font-bold text-white mb-2">
-                Ready to Join?
-              </h3>
-              <p className="text-gray-200">
-                Create an account and unlock exclusive content today.
-              </p>
-            </div>
-            <Button size="lg" variant="secondary" className="mt-4 md:mt-0">
-              Sign Up Now
-            </Button>
+      {/* Trending Castings Section */}
+      <div className="py-20 bg-gradient-to-b from-black to-gray-950">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-black text-white mb-12">Castings en tendance</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {castingImages.map((image, idx) => (
+              <div key={idx} className="group relative rounded-lg overflow-hidden aspect-square hover:ring-2 hover:ring-red-600 transition-all duration-300 cursor-pointer">
+                <img
+                  src={image}
+                  alt={`Casting ${idx + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <button className="px-4 py-2 bg-red-600 text-white rounded font-bold hover:bg-red-700">
+                    Détails
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        </Card>
+        </div>
+      </div>
+
+      {/* Final CTA Section */}
+      <div className="py-20 bg-black">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="rounded-lg p-12 bg-gradient-to-r from-red-600 to-red-900 text-center">
+            <h3 className="text-4xl font-black text-white mb-4">Prêt à rejoindre l'agence ?</h3>
+            <p className="text-lg text-gray-100 mb-8">
+              Créez votre profil et accédez aux collaborations selon votre niveau d'abonnement.
+            </p>
+            <CTA isDark={false} onClick={() => navigate(isAuthenticated ? '/workspace' : '/register')}>
+              {isAuthenticated ? 'Accéder à mon espace' : 'Créer un profil'}
+            </CTA>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -38,6 +38,8 @@ class UserUpdate(BaseModel):
     full_name: str | None = None
     email: EmailStr | None = None
     password: str | None = None
+    role_id: int | None = None
+    is_active: bool | None = None
 
 
 class User(UserBase):

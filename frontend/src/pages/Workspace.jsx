@@ -25,10 +25,10 @@ export const Workspace = () => {
   };
 
   const tabs = [
-    { id: 'highlights', label: 'Highlights', icon: '⭐' },
-    { id: 'subscriptions', label: 'My Subscriptions', icon: '🎯' },
-    { id: 'favorites', label: 'Favorites', icon: '❤️' },
-    { id: 'chat', label: 'Chat', icon: '💬' },
+    { id: 'highlights', label: 'Opportunités', icon: '⭐' },
+    { id: 'subscriptions', label: 'Abonnement', icon: '🎯' },
+    { id: 'favorites', label: 'Portfolio', icon: '❤️' },
+    { id: 'chat', label: 'Messagerie', icon: '💬' },
   ];
 
   return (
@@ -36,10 +36,10 @@ export const Workspace = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-gray-900 to-gray-950 border-b border-gray-800 px-6 py-8">
         <h1 className="text-3xl font-bold text-white mb-2">
-          Welcome back, {user?.email}
+          Bon retour, {user?.email}
         </h1>
         <p className="text-gray-400">
-          Continue your journey with EOEX
+          Poursuivez votre parcours avec KCD Talent Agency
         </p>
       </div>
 
@@ -68,22 +68,22 @@ export const Workspace = () => {
         {activeTab === 'highlights' && (
           <div>
             <h2 className="text-2xl font-bold text-white mb-6">
-              Trending Highlights
+              Opportunités en tendance
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {[1, 2, 3, 4].map((i) => (
                 <Card key={i} className="card-hover">
                   <div className="w-full aspect-video bg-gradient-to-br from-red-600 to-red-900 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">Highlight {i}</span>
+                    <span className="text-white text-lg font-bold">Annonce {i}</span>
                   </div>
                   <h3 className="text-white font-semibold mb-2">
-                    Featured Module {i}
+                    Collaboration {i}
                   </h3>
                   <p className="text-gray-400 text-sm mb-4">
-                    Discover new features and modules
+                    Détails du projet, lieu et profil recherché
                   </p>
                   <Button size="sm" className="w-full">
-                    Explore
+                    Voir l'annonce
                   </Button>
                 </Card>
               ))}
@@ -95,8 +95,8 @@ export const Workspace = () => {
         {activeTab === 'subscriptions' && (
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">My Subscriptions</h2>
-              <Button variant="primary">Add Subscription</Button>
+              <h2 className="text-2xl font-bold text-white">Mon abonnement</h2>
+              <Button variant="primary">Passer en Premium</Button>
             </div>
 
             {isLoading ? (
@@ -111,25 +111,25 @@ export const Workspace = () => {
                   <Card key={sub.id} className="flex justify-between items-start">
                     <div>
                       <h3 className="text-white font-semibold text-lg mb-2">
-                        {sub.plan_name || 'Standard Plan'}
+                        {sub.plan_name || 'Plan Premium Talent'}
                       </h3>
                       <p className="text-gray-400 text-sm mb-3">
-                        Status: <Badge>{sub.status || 'active'}</Badge>
+                        Statut : <Badge>{sub.status || 'actif'}</Badge>
                       </p>
                       <p className="text-gray-400 text-sm">
-                        Expires: {new Date(sub.end_date).toLocaleDateString() || 'N/A'}
+                        Expire le : {new Date(sub.end_date).toLocaleDateString() || 'N/A'}
                       </p>
                     </div>
                     <Button variant="outline" size="sm">
-                      Manage
+                      Gérer
                     </Button>
                   </Card>
                 ))}
               </div>
             ) : (
               <Card className="text-center py-12">
-                <p className="text-gray-400 mb-4">No active subscriptions</p>
-                <Button>Browse Plans</Button>
+                <p className="text-gray-400 mb-4">Aucun abonnement actif</p>
+                <Button>Découvrir le Premium</Button>
               </Card>
             )}
           </div>
@@ -138,16 +138,16 @@ export const Workspace = () => {
         {/* Favorites Tab */}
         {activeTab === 'favorites' && (
           <div>
-            <h2 className="text-2xl font-bold text-white mb-6">Top 5 Favorites</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Portfolio</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Card key={i} className="card-hover text-center">
                   <div className="w-full aspect-square bg-gradient-to-br from-red-600 to-red-900 rounded-lg mb-4 flex items-center justify-center">
                     <span className="text-3xl">⭐</span>
                   </div>
-                  <h3 className="text-white font-semibold mb-2">Favorite {i}</h3>
+                  <h3 className="text-white font-semibold mb-2">Photo {i}</h3>
                   <Button variant="ghost" size="sm" className="w-full">
-                    Open
+                    Ouvrir
                   </Button>
                 </Card>
               ))}
@@ -158,20 +158,20 @@ export const Workspace = () => {
         {/* Chat Tab */}
         {activeTab === 'chat' && (
           <div>
-            <h2 className="text-2xl font-bold text-white mb-6">Community Chat</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Messagerie privée</h2>
             <Card className="h-96 flex flex-col">
               <div className="flex-1 overflow-y-auto mb-4">
                 <p className="text-gray-400 text-center py-8">
-                  No messages yet. Start a conversation!
+                  Aucun message pour l'instant. Contactez une marque ou un talent.
                 </p>
               </div>
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="Type a message..."
+                  placeholder="Tapez votre message..."
                   className="flex-1 bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
                 />
-                <Button size="sm">Send</Button>
+                <Button size="sm">Envoyer</Button>
               </div>
             </Card>
           </div>

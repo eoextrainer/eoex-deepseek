@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, func
 from sqlalchemy.orm import relationship
-from app.db.session import Base
+from ..db.session import Base
 
 
 class Role(Base):
@@ -24,3 +24,6 @@ class User(Base):
     created_at = Column(DateTime, server_default=func.now())
 
     role = relationship("Role", back_populates="users")
+    feature_requests = relationship("FeatureRequest", back_populates="user")
+    issues = relationship("UserIssue", back_populates="user")
+    preference = relationship("UserPreference", back_populates="user", uselist=False)
